@@ -14,7 +14,8 @@ const reset = css`
     height: 100vh;
     overflow: hidden;
     font-family: "Spoqa Han Sans Neo", "sans-serif";
-    background-color: #efefef;
+    background-color: #fff;
+    overflow: auto;
   }
 
   a {

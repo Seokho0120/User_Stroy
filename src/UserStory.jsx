@@ -15,14 +15,14 @@ export default function UserStory() {
       },
     })
       .then((res) => res.json())
-      .then((res) => setProduct(res));
+      .then((data) => setProduct(data));
   }, []);
   // console.log(product);
 
   return (
-    <div style={{ height: "100vh", overflow: "auto" }}>
+    <>
       <Global styles={reset} />
       <ContentCard products={product} />
-    </div>
+    </>
   );
 }

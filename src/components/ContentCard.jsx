@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { BsSuitHeart } from "react-icons/bs";
 
@@ -19,7 +19,7 @@ export default function ContentCard({ products }) {
                 <BsSuitHeart color="#FF5400" />
               </FooterIcon>
               <FooterContent>
-                {`${item.club.place} 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
+                {`${item.club.place} | 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
               </FooterContent>
             </CardFooter>
           </Card>
@@ -43,9 +43,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 564px;
+  min-height: 700px;
   border-radius: 7px;
-  background-color: white;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px #ecece9 inset;
 `;
 
 const CardImg = styled.img`
@@ -76,6 +77,7 @@ const FooterLine = styled.div`
 `;
 
 const CardFooter = styled.div`
+  display: flex;
   width: 100%;
   padding: 16px 20px;
 `;
@@ -93,6 +95,13 @@ const FooterIcon = styled.div`
   cursor: pointer;
 `;
 
+// 시간 바꿔야함 -> Moment 사용법 알아보기
 const FooterContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  color: #6e6e6c;
+  padding-left: 10px;
+  font-size: 12px;
 `;
