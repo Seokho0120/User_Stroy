@@ -2,9 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-export default function FilterButton({ text }) {
+export default function FilterButton({ text, onClick }) {
   return (
-    <BtnForm>
+    <BtnForm onClick={onClick}>
       {text}
       <MdOutlineKeyboardArrowDown />
     </BtnForm>
@@ -12,6 +12,7 @@ export default function FilterButton({ text }) {
 }
 
 const BtnForm = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -38,7 +38,7 @@ const CardTitle = styled.div`
   padding: 0px 20px 32px 20px;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
