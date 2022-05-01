@@ -20,9 +20,9 @@ export default function UserStory() {
   // console.log(product);
 
   return (
-    <>
+    <div style={{ height: "100vh", overflow: "auto" }}>
       <Global styles={reset} />
       <ContentCard products={product} />
-    </>
+    </div>
   );
 }
