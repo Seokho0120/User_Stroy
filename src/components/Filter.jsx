@@ -17,10 +17,14 @@ export default function Filter() {
   };
 
   const [currentID, setCurrentID] = useState();
-  const FilterHandler = (id) => {
+
+  const openContents = (id) => {
     setCurrentID(id);
   };
-  console.log(currentID);
+
+  const closeContents = () => {
+    setCurrentID(false);
+  };
 
   // 버튼 클릭 -> 드롭다운
   // 평소 안보이다가 버튼을 클릭하면 새로운 드롭다운이 보여진다.
@@ -34,12 +38,13 @@ export default function Filter() {
             <FilterButton
               key={btnItem + index}
               text={btnItem}
-              onClick={() => FilterHandler(index + 1)}
+              onClick={() => openContents(index + 1)}
             />
           );
         })}
         {FILTER_CONTENTS[currentID]}
       </FilterBtnWrapper>
+      <ResearchButton />
     </FilterWrapper>
   );
 }

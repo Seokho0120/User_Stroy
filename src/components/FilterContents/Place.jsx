@@ -1,35 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 
-export default function Place() {
+const PLACE_TYPE = [
+  { id: 1, type: "강남", name: "강남" },
+  { id: 2, type: "안국", name: "안국" },
+  { id: 3, type: "온라인", name: "온라인" },
+  {
+    id: 4,
+    type: "롯데백화점 잠실점 문화센터",
+    name: "롯데백화점 잠실점 문화센터",
+  },
+];
+
+export default function Place({ closeContents }) {
   return (
     <Wrapper>
-      <Contents>체크박스</Contents>
-      <Contents>체크박스</Contents>
-      <Contents>체크박스</Contents>
-      <Contents>체크박스</Contents>
-      <Contents>체크박스</Contents>
+      {PLACE_TYPE.map((item, index) => {
+        return (
+          <PlaceList key={index}>
+            <Label name={item.name}>
+              <CheckBox type="checkbox" value="space" name={item.name} />
+              <PlaceName>{item.type}</PlaceName>
+            </Label>
+          </PlaceList>
+        );
+      })}
       <ButtonWrapper>
-        <Buttons>취소</Buttons>
+        <CloseButton onClick={() => closeContents()}>취소</CloseButton>
         <Buttons>적용</Buttons>
       </ButtonWrapper>
     </Wrapper>
   );
 }
-
 const Wrapper = styled.div`
   position: absolute;
   width: 320px;
-  /* background-color: black; */
   background-color: #fff;
-  box-shadow: rgb(0 0 0 / 16%) 0px 4px 10px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 5px 10px;
   padding: 14px;
   top: 120%;
 `;
 
-const Contents = styled.div`
-  /* background-color: blue; */
-  color: black;
+const PlaceList = styled.li`
+  padding: 4px;
+`;
+
+const Label = styled.label``;
+
+const CheckBox = styled.input`
+  margin-right: 10px;
+  &:checked {
+    accent-color: #ff7900;
+  }
+`;
+
+const PlaceName = styled.span`
+  font-size: 14px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -38,11 +64,21 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const Buttons = styled.button`
-  background-color: red;
-  color: white;
+const CloseButton = styled.button`
+  background-color: rgb(247, 247, 245);
   padding: 4px 12px;
   text-align: center;
   font-weight: bold;
   margin-left: 12px;
+  border-radius: 3px;
+`;
+
+const Buttons = styled.button`
+  background-color: #ff7900;
+  color: #fff;
+  padding: 4px 12px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 12px;
+  border-radius: 3px;
 `;
