@@ -4,30 +4,39 @@ import { BsSuitHeart } from "react-icons/bs";
 
 export default function ContentCard({ products }) {
   return (
-    <CardContainer>
-      {products &&
-        products.map((item, index) => (
-          <Card key={item.club.id}>
-            <CardImg src={item.club.coverUrl} />
-            <CardContentWrapper>
-              <ContentName>{item.club.name}</ContentName>
-              <ContentDescription>{item.club.description}</ContentDescription>
-            </CardContentWrapper>
-            <FooterLine />
-            <CardFooter>
-              <FooterIcon>
-                <BsSuitHeart color="#FF5400" />
-              </FooterIcon>
-              <FooterContent>
-                {`${item.club.place} | 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
-              </FooterContent>
-            </CardFooter>
-          </Card>
-        ))}
-    </CardContainer>
+    <>
+      <CardTitle>모든 클럽 보기</CardTitle>
+      <CardContainer>
+        {products &&
+          products.map((item, index) => (
+            <Card key={item.club.id}>
+              <CardImg src={item.club.coverUrl} />
+              <CardContentWrapper>
+                <ContentName>{item.club.name}</ContentName>
+                <ContentDescription>{item.club.description}</ContentDescription>
+              </CardContentWrapper>
+              <FooterLine />
+              <CardFooter>
+                <FooterIcon>
+                  <BsSuitHeart color="#FF5400" />
+                </FooterIcon>
+                <FooterContent>
+                  {`${item.club.place} | 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
+                </FooterContent>
+              </CardFooter>
+            </Card>
+          ))}
+      </CardContainer>
+    </>
     // Intersection
   );
 }
+
+const CardTitle = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0px 20px 32px 20px;
+`;
 
 const CardContainer = styled.div`
   display: grid;
@@ -36,7 +45,7 @@ const CardContainer = styled.div`
   height: 100%;
   column-gap: 8px;
   row-gap: 40px;
-  padding: 16px 20px;
+  padding: 0 20px;
 `;
 
 const Card = styled.div`
