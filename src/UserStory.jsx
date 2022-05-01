@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Global } from "@emotion/react";
 import reset from "./styles/Reset";
 import ContentCard from "./components/ContentCard";
+import Headers from "./components/Header";
 
 export default function UserStory() {
   const [product, setProduct] = useState();
@@ -22,6 +23,7 @@ export default function UserStory() {
   return (
     <>
       <Global styles={reset} />
+      <Headers />
       <ContentCard products={product} />
     </>
   );
