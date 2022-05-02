@@ -12,20 +12,14 @@ const PLACE_TYPE = [
   },
 ];
 
-export default function Place({ closeContents, getSelectedPlace }) {
-  const [selected, setSelected] = useState({
-    강남: false,
-    안국: false,
-    온라인: false,
-    "롯데백화점 잠실점 문화센터": false,
-  });
+export default function Place({ changePlace, closeContents }) {
+  const [selected, setSelected] = useState("");
 
   const handleChange = (e) => {
     const { name } = e.target;
-    setSelected((current) => ({ ...current, [name]: !current[name] }));
+    setSelected(name);
   };
-
-  console.log(selected);
+  // console.log(selected);
 
   return (
     <Wrapper>
@@ -38,6 +32,7 @@ export default function Place({ closeContents, getSelectedPlace }) {
                 value="space"
                 name={item.name}
                 checked={selected[item.name]}
+                readOnly
               />
               <PlaceName>{item.type}</PlaceName>
             </Label>
@@ -46,7 +41,7 @@ export default function Place({ closeContents, getSelectedPlace }) {
       })}
       <ButtonWrapper>
         <CloseButton onClick={closeContents}>취소</CloseButton>
-        <Buttons onClick={() => getSelectedPlace(selected)}>적용</Buttons>
+        <Buttons onClick={() => changePlace(selected)}>적용</Buttons>
       </ButtonWrapper>
     </Wrapper>
   );

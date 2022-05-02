@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import FilterButton from "./Buttons/FilterButton";
 import ResearchButton from "./Buttons/ResearchButton";
@@ -10,12 +9,8 @@ import Type from "./FilterContents/Type";
 
 const BTN_NAME = ["장소", "요일", "클럽유형"];
 
-export default function Filter({ setProduct }) {
+export default function Filter({ changePlace }) {
   const [currentID, setCurrentID] = useState();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [club, setClub] = useState([]);
-  const places = useRef("");
 
   const openContents = (id) => {
     setCurrentID(id);
@@ -26,41 +21,11 @@ export default function Filter({ setProduct }) {
     // console.log("close");
   };
 
-  const getSelectedPlace = (info) => {
-    const URLSearch = new URLSearchParams(location.search);
-    Object.entries(info).map(([key, value]) => {
-      if (typeof value === "boolean") {
-        value && URLSearch.append("placeFilter", key);
-      } else {
-        value && URLSearch.append(key, value);
-      }
-    });
-    navigate(`?` + URLSearch.toString());
-  };
-
-  useEffect(() => {
-    fetch("https://api.json-generator.com/templates/ePNAVU1sgGtQ/data", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer 22swko029o3wewjovgvs9wcqmk8p3ttrepueemyj",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
-
-  const FILTER_CONTENTS = {
-    1: (
-      <Place
-        closeContents={closeContents}
-        getSelectedPlace={getSelectedPlace}
-        club={club}
-      />
-    ),
-    2: <Days />,
-    3: <Type />,
-  };
+  const FILTER_CONTENTS = [
+    <Place closeContents={closeContents} changePlace={changePlace} />,
+    <Days />,
+    <Type />,
+  ];
   // 추후 리팩토링 방향 -> 1~3번을 map으로 돌린 후 전부 false, 클릭 시 true가 되면 화면에 보이게 만들기
 
   return (
@@ -72,7 +37,7 @@ export default function Filter({ setProduct }) {
             <FilterButton
               key={btnItem + index}
               text={btnItem}
-              onClick={() => openContents(index + 1)}
+              onClick={() => openContents(index)}
             />
           );
         })}
