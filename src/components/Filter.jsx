@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import FilterButton from "./Buttons/FilterButton";
 import ResearchButton from "./Buttons/ResearchButton";
@@ -7,14 +7,10 @@ import Place from "./FilterContents/Place";
 import Days from "./FilterContents/Days";
 import Type from "./FilterContents/Type";
 
-export default function Filter() {
-  const btnName = ["장소", "요일", "클럽유형"];
+const BTN_NAME = ["장소", "요일", "클럽유형"];
 
-  const FILTER_CONTENTS = {
-    1: <Place />,
-    2: <Days />,
-    3: <Type />,
-  };
+export default function Filter() {
+  const places = useRef("");
 
   const [currentID, setCurrentID] = useState();
 
@@ -24,16 +20,28 @@ export default function Filter() {
 
   const closeContents = () => {
     setCurrentID(false);
+    // console.log("close");
   };
 
-  // 버튼 클릭 -> 드롭다운
-  // 평소 안보이다가 버튼을 클릭하면 새로운 드롭다운이 보여진다.
+  // const getSelectedPlace = (item) => {
+  //   setCurrentID(false);
+  //   Object.entries(item).map(([key, value]) => {
+  //     places.current = `${places.current}`;
+  //   });
+  // };
+
+  const FILTER_CONTENTS = {
+    1: <Place closeContents={closeContents} />,
+    2: <Days />,
+    3: <Type />,
+  };
+  // 추후 리팩토링 방향 -> 1~3번을 map으로 돌린 후 전부 false, 클릭 시 true가 되면 화면에 보이게 만들기
 
   return (
     <FilterWrapper>
       <ResetButton />
       <FilterBtnWrapper>
-        {btnName.map((btnItem, index) => {
+        {BTN_NAME.map((btnItem, index) => {
           return (
             <FilterButton
               key={btnItem + index}

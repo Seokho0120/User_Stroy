@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 const PLACE_TYPE = [
@@ -13,25 +13,43 @@ const PLACE_TYPE = [
 ];
 
 export default function Place({ closeContents }) {
+  // const [selected, setSelected] = useState({
+  //   강남: false,
+  //   안국: false,
+  //   온라인: false,
+  //   "롯데백화점 잠실점 문화센터": false,
+  // });
+
+  // const handleChange = (e) => {
+  //   const { name } = e.target;
+  //   setSelected((current) => ({ ...current, [name]: !current[name] }));
+  // };
+
   return (
     <Wrapper>
       {PLACE_TYPE.map((item, index) => {
         return (
           <PlaceList key={index}>
             <Label name={item.name}>
-              <CheckBox type="checkbox" value="space" name={item.name} />
+              <CheckBox
+                type="checkbox"
+                value="space"
+                name={item.name}
+                // checked={selected[item.name]}
+              />
               <PlaceName>{item.type}</PlaceName>
             </Label>
           </PlaceList>
         );
       })}
       <ButtonWrapper>
-        <CloseButton onClick={() => closeContents()}>취소</CloseButton>
+        <CloseButton onClick={closeContents}>취소</CloseButton>
         <Buttons>적용</Buttons>
       </ButtonWrapper>
     </Wrapper>
   );
 }
+
 const Wrapper = styled.div`
   position: absolute;
   width: 320px;
