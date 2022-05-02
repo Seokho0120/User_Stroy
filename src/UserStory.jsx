@@ -25,7 +25,7 @@ export default function UserStory() {
     <>
       <Global styles={reset} />
       <Headers />
-      <Filter />
+      <Filter setProduct={setProduct} />
       <ContentCard products={product} />
     </>
   );

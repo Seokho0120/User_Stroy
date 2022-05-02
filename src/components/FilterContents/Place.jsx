@@ -12,30 +12,32 @@ const PLACE_TYPE = [
   },
 ];
 
-export default function Place({ closeContents }) {
-  // const [selected, setSelected] = useState({
-  //   강남: false,
-  //   안국: false,
-  //   온라인: false,
-  //   "롯데백화점 잠실점 문화센터": false,
-  // });
+export default function Place({ closeContents, getSelectedPlace }) {
+  const [selected, setSelected] = useState({
+    강남: false,
+    안국: false,
+    온라인: false,
+    "롯데백화점 잠실점 문화센터": false,
+  });
 
-  // const handleChange = (e) => {
-  //   const { name } = e.target;
-  //   setSelected((current) => ({ ...current, [name]: !current[name] }));
-  // };
+  const handleChange = (e) => {
+    const { name } = e.target;
+    setSelected((current) => ({ ...current, [name]: !current[name] }));
+  };
+
+  console.log(selected);
 
   return (
     <Wrapper>
       {PLACE_TYPE.map((item, index) => {
         return (
-          <PlaceList key={index}>
+          <PlaceList key={index} onChange={handleChange}>
             <Label name={item.name}>
               <CheckBox
                 type="checkbox"
                 value="space"
                 name={item.name}
-                // checked={selected[item.name]}
+                checked={selected[item.name]}
               />
               <PlaceName>{item.type}</PlaceName>
             </Label>
@@ -44,7 +46,7 @@ export default function Place({ closeContents }) {
       })}
       <ButtonWrapper>
         <CloseButton onClick={closeContents}>취소</CloseButton>
-        <Buttons>적용</Buttons>
+        <Buttons onClick={() => getSelectedPlace(selected)}>적용</Buttons>
       </ButtonWrapper>
     </Wrapper>
   );
