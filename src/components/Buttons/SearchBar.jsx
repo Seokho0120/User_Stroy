@@ -2,16 +2,19 @@ import React from "react";
 import styled from "@emotion/styled";
 import { FiSearch } from "react-icons/fi";
 
-export default function ResearchButton() {
+export default function SearchBar({ updateSearchProduct }) {
   return (
-    <ResearchBtnForm>
+    <SearchForm>
       <FiSearch />
-      <ResearchBtn placeholder="검색어를 입력하세요"></ResearchBtn>
-    </ResearchBtnForm>
+      <SearchInput
+        placeholder="검색어를 입력하세요"
+        onChange={(e) => updateSearchProduct(e.target.value)}
+      />
+    </SearchForm>
   );
 }
 
-const ResearchBtnForm = styled.div`
+const SearchForm = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -23,7 +26,7 @@ const ResearchBtnForm = styled.div`
   padding: 10px 0 10px 12px;
 `;
 
-const ResearchBtn = styled.input`
+const SearchInput = styled.input`
   font-weight: 500;
   margin-left: 8px;
   background-color: transparent;

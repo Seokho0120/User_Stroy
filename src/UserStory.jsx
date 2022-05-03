@@ -7,11 +7,14 @@ import Filter from "./components/Filter";
 import config from "./config/config.json";
 
 export default function UserStory() {
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   const [place, setPlace] = useState("");
+  const [searchProduct, setSearchProduct] = useState("");
 
   const changePlace = (selected) => setPlace(selected);
-  // console.log(place);
+  // State 끌어올리기
+  const updateSearchProduct = (e) => setSearchProduct(e);
+  // State 끌어올리기
 
   useEffect(() => {
     (async function () {
@@ -23,17 +26,27 @@ export default function UserStory() {
         },
       });
       const data = await res.json();
-      const filteredData = data.filter((item) => item.club.place === place);
-      setProduct(filteredData.length === 0 ? data : filteredData);
+      const filteredData = data.filter(
+        (product) => product.club.place === place
+      );
+      setProducts(filteredData.length === 0 ? data : filteredData);
     })();
   }, [place]);
+
+  const sortedProducts = products.filter((product) => {
+    return product.club.name.includes(searchProduct);
+  });
 
   return (
     <>
       <Global styles={reset} />
       <Headers />
-      <Filter changePlace={changePlace} place={place} />
-      <ContentCard products={product} />
+      <Filter
+        changePlace={changePlace}
+        place={place}
+        updateSearchProduct={updateSearchProduct}
+      />
+      <ContentCard products={sortedProducts} />
     </>
   );
 }

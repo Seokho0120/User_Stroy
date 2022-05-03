@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import FilterButton from "./Buttons/FilterButton";
-import ResearchButton from "./Buttons/ResearchButton";
+import SearchBar from "./Buttons/SearchBar";
 import ResetButton from "./Buttons/ResetButton";
 import Place from "./FilterContents/Place";
 import Days from "./FilterContents/Days";
@@ -9,7 +9,7 @@ import Type from "./FilterContents/Type";
 
 const BTN_NAME = ["장소", "요일", "클럽유형"];
 
-export default function Filter({ changePlace }) {
+export default function Filter({ changePlace, updateSearchProduct }) {
   const [currentID, setCurrentID] = useState();
 
   const openContents = (id) => {
@@ -43,7 +43,7 @@ export default function Filter({ changePlace }) {
         })}
         {FILTER_CONTENTS[currentID]}
       </FilterBtnWrapper>
-      <ResearchButton />
+      <SearchBar updateSearchProduct={updateSearchProduct} />
     </FilterWrapper>
   );
 }
