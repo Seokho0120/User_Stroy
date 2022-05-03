@@ -9,7 +9,7 @@ import Type from "./FilterContents/Type";
 
 const BTN_NAME = ["장소", "요일", "클럽유형"];
 
-export default function Filter({ changePlace, updateSearchProduct }) {
+export default function Filter({ changePlace, updateSearchProducts }) {
   const [currentID, setCurrentID] = useState();
 
   const openContents = (id) => {
@@ -43,7 +43,7 @@ export default function Filter({ changePlace, updateSearchProduct }) {
         })}
         {FILTER_CONTENTS[currentID]}
       </FilterBtnWrapper>
-      <SearchBar updateSearchProduct={updateSearchProduct} />
+      <SearchBar updateSearchProducts={updateSearchProducts} />
     </FilterWrapper>
   );
 }

@@ -2,30 +2,29 @@ import React from "react";
 import styled from "@emotion/styled";
 import { BsSuitHeart } from "react-icons/bs";
 
-export default function ContentCard({ products }) {
+export default function ContentCard({ filterProducts }) {
   return (
     <>
       <CardTitle>모든 클럽 보기</CardTitle>
       <CardContainer>
-        {products &&
-          products.map((item, index) => (
-            <Card key={item.club.id}>
-              <CardImg src={item.club.coverUrl} />
-              <CardContentWrapper>
-                <ContentName>{item.club.name}</ContentName>
-                <ContentDescription>{item.club.description}</ContentDescription>
-              </CardContentWrapper>
-              <FooterLine />
-              <CardFooter>
-                <FooterIcon>
-                  <BsSuitHeart color="#FF5400" />
-                </FooterIcon>
-                <FooterContent>
-                  {`${item.club.place} | 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
-                </FooterContent>
-              </CardFooter>
-            </Card>
-          ))}
+        {filterProducts?.map((item) => (
+          <Card key={item.club.id}>
+            <CardImg src={item.club.coverUrl} />
+            <CardContentWrapper>
+              <ContentName>{item.club.name}</ContentName>
+              <ContentDescription>{item.club.description}</ContentDescription>
+            </CardContentWrapper>
+            <FooterLine />
+            <CardFooter>
+              <FooterIcon>
+                <BsSuitHeart color="#FF5400" />
+              </FooterIcon>
+              <FooterContent>
+                {`${item.club.place} | 첫 모임일: ${item.club.meetings[0].startedAt} ~ ${item.club.meetings[0].endedAt}`}
+              </FooterContent>
+            </CardFooter>
+          </Card>
+        ))}
       </CardContainer>
     </>
     // Intersection

@@ -19,7 +19,6 @@ export default function Place({ changePlace, closeContents }) {
     const { name } = e.target;
     setSelected(name);
   };
-  // console.log(selected);
 
   return (
     <Wrapper>

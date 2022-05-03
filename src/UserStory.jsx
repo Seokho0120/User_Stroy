@@ -9,33 +9,41 @@ import config from "./config/config.json";
 export default function UserStory() {
   const [products, setProducts] = useState([]);
   const [place, setPlace] = useState("");
+  const [filterProducts, setFilterProducts] = useState([]);
   const [searchProduct, setSearchProduct] = useState("");
 
   const changePlace = (selected) => setPlace(selected);
   // State 끌어올리기
-  const updateSearchProduct = (e) => setSearchProduct(e);
+  const updateSearchProducts = (e) => setSearchProduct(e);
   // State 끌어올리기
 
   useEffect(() => {
-    (async function () {
-      const res = await fetch(`${config.BASE_URL}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer 22swko029o3wewjovgvs9wcqmk8p3ttrepueemyj",
-        },
-      });
-      const data = await res.json();
-      const filteredData = data.filter(
-        (product) => product.club.place === place
-      );
-      setProducts(filteredData.length === 0 ? data : filteredData);
-    })();
-  }, [place]);
+    fetch(`${config.BASE_URL}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer 22swko029o3wewjovgvs9wcqmk8p3ttrepueemyj",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-  const sortedProducts = products.filter((product) => {
-    return product.club.name.includes(searchProduct);
-  });
+  useEffect(() => {
+    const filtered = products?.filter(
+      (product) => product.club.place === place
+    );
+    setFilterProducts(filtered.length > 0 ? filtered : products);
+  }, [products, place]);
+
+  useEffect(() => {
+    searchProduct &&
+      setFilterProducts((current) =>
+        current.filter((product) => {
+          return product.club.name.includes(searchProduct);
+        })
+      );
+  }, [searchProduct]);
 
   return (
     <>
@@ -44,9 +52,9 @@ export default function UserStory() {
       <Filter
         changePlace={changePlace}
         place={place}
-        updateSearchProduct={updateSearchProduct}
+        updateSearchProducts={updateSearchProducts}
       />
-      <ContentCard products={sortedProducts} />
+      <ContentCard filterProducts={filterProducts} products={products} />
     </>
   );
 }

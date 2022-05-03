@@ -2,13 +2,20 @@ import React from "react";
 import styled from "@emotion/styled";
 import { FiSearch } from "react-icons/fi";
 
-export default function SearchBar({ updateSearchProduct }) {
+export default function SearchBar({ updateSearchProducts }) {
+  const onCheckEnter = (e) => {
+    if (e.key === "enter") {
+      updateSearchProducts(e.target.value);
+    }
+    updateSearchProducts(e.target.value);
+  };
+
   return (
     <SearchForm>
       <FiSearch />
       <SearchInput
         placeholder="검색어를 입력하세요"
-        onChange={(e) => updateSearchProduct(e.target.value)}
+        onKeyPress={onCheckEnter}
       />
     </SearchForm>
   );
