@@ -34,7 +34,7 @@ export default function ContentCard({ filterProducts }) {
 const CardTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
-  padding: 0px 20px 32px 20px;
+  padding: 0px 20px 32px 100px;
 `;
 
 const CardContainer = styled.section`
@@ -44,7 +44,7 @@ const CardContainer = styled.section`
   height: 100%;
   column-gap: 8px;
   row-gap: 40px;
-  padding: 0 20px;
+  padding: 0 100px;
 `;
 
 const Card = styled.div`

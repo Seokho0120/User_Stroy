@@ -4,6 +4,12 @@
 
 사용자는 상품 목록을 확인 할 수 있고, 상품의 상세 페이지에 접근이 가능합니다.
 
+22.04.29 - 22.05.04
+
+## Tech Stack
+
+JavaScript(ES6) | React | React Router | emotion
+
 ## Grid
 
 Flex와 차이점, 사용방법, 링크 작성 예정

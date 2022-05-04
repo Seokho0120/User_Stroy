@@ -8,5 +8,5 @@ export default function Headers() {
 
 const Title = styled.img`
   width: 20%;
-  padding: 40px 20px;
+  padding: 40px 100px;
 `;

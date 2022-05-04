@@ -52,7 +52,7 @@ const FilterWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 20px 32px;
+  padding: 0 100px 32px;
 `;
 
 const FilterBtnWrapper = styled.div`

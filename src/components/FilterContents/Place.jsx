@@ -40,7 +40,14 @@ export default function Place({ changePlace, closeContents }) {
       })}
       <ButtonWrapper>
         <CloseButton onClick={closeContents}>취소</CloseButton>
-        <Buttons onClick={() => changePlace(selected)}>적용</Buttons>
+        <Buttons
+          onClick={() => {
+            changePlace(selected);
+            closeContents();
+          }}
+        >
+          적용
+        </Buttons>
       </ButtonWrapper>
     </Wrapper>
   );
